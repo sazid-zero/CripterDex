@@ -239,8 +239,13 @@ export default function DashboardPage() {
               </div>
             </CardHeader>
             <CardContent className="pl-2">
-              <div className="h-[350px] w-full">
-                {isChartLoading || loading ? <Skeleton className="h-full w-full" /> : (
+              <div className="h-[350px] w-full relative">
+                 {(isChartLoading) && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-[1px] z-10 rounded-lg transition-all duration-300">
+                        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                      </div>
+                    )}
+                 {loading ? <Skeleton className="h-full w-full" /> : (
                   <ResponsiveContainer width="100%" height="100%">
                     {chartType === 'area' ? (
                         <AreaChart data={dashboardChartData}>

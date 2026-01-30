@@ -23,34 +23,44 @@ export default function CoinDetailPage() {
   const coinId = params.id as string
   const [crypto, setCrypto] = useState<Cryptocurrency | null>(null)
   const [loading, setLoading] = useState(true)
+  const [chartLoading, setChartLoading] = useState(false)
   const [timeRange, setTimeRange] = useState('7')
   const [chartData, setChartData] = useState<any[]>([])
   const { isInWatchlist, addToWatchlist, removeFromWatchlist } = useWatchlistStore()
 
+  // Fetch coin details only on mount or id change
   useEffect(() => {
-    loadCoinData()
-  }, [coinId, timeRange])
-
-  const loadCoinData = async () => {
-    try {
-      setLoading(true)
-      
-      const [detailRes, chartRes] = await Promise.all([
-          fetch(`/api/crypto/coin/${coinId}`),
-          fetch(`/api/crypto/chart/${coinId}?days=${timeRange}`)
-      ])
-      
-      const detailData = await detailRes.json()
-      const chartDataRes = await chartRes.json()
-      
-      setCrypto(detailData)
-      setChartData(chartDataRes)
-    } catch (error) {
-      console.error('Error loading coin data:', error)
-    } finally {
-      setLoading(false)
+    const loadCoinDetails = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch(`/api/crypto/coin/${coinId}`)
+        const data = await response.json()
+        setCrypto(data)
+      } catch (error) {
+        console.error('Error loading coin details:', error)
+      } finally {
+        setLoading(false)
+      }
     }
-  }
+    loadCoinDetails()
+  }, [coinId])
+
+  // Fetch chart data when id or timeRange changes
+  useEffect(() => {
+    const loadChart = async () => {
+      try {
+        setChartLoading(true)
+        const response = await fetch(`/api/crypto/chart/${coinId}?days=${timeRange}`)
+        const data = await response.json()
+        setChartData(data)
+      } catch (error) {
+        console.error('Error loading chart data:', error)
+      } finally {
+        setChartLoading(false)
+      }
+    }
+    loadChart()
+  }, [coinId, timeRange])
 
   const toggleWatchlist = () => {
     if (!crypto) return
@@ -150,7 +160,12 @@ export default function CoinDetailPage() {
                  </div>
               </CardHeader>
               <CardContent>
-                 <div className="h-[350px] w-full mt-4">
+                 <div className="h-[350px] w-full mt-4 relative">
+                    {chartLoading && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-[1px] z-10 rounded-lg transition-all duration-300">
+                        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                      </div>
+                    )}
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={chartData}>
                         <defs>
