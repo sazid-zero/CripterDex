@@ -15,6 +15,13 @@
 - **Responsive Design**: Seamless experience across Desktop, Tablet, and Mobile devices.
 - **Progressive Web App (PWA)**: Installable application support.
 
+## 🔌 Integrations & APIs
+
+- **[CoinGecko API](https://www.coingecko.com/en/api)**: Powering the real-time market data, including price feeds, market caps, volume data, and historical charts. Features automatic fallback to mock data to handle rate limits gracefully.
+- **[Lenis](https://github.com/darkroomengineering/lenis)**: Implemented for buttery smooth scrolling interactions throughout the application.
+- **[Lucide Icons](https://lucide.dev/)**: Beautiful, consistent vector icons used across the UI.
+- **[Vercel Analytics](https://vercel.com/analytics)**: Privacy-friendly real-time traffic insights.
+
 ##  Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
