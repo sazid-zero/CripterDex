@@ -22,6 +22,7 @@
 ## 🔌 Integrations & APIs
 
 - **[CoinGecko API](https://www.coingecko.com/en/api)**: Powering the real-time market data, including price feeds, market caps, volume data, and historical charts. Features automatic fallback to mock data to handle rate limits gracefully.
+- **[CryptoCompare API](https://min-api.cryptocompare.com/)**: Delivers the global news feed, aggregating the latest cryptocurrency updates from top publishers.
 - **[Lenis](https://github.com/darkroomengineering/lenis)**: Implemented for buttery smooth scrolling interactions throughout the application.
 - **[Lucide Icons](https://lucide.dev/)**: Beautiful, consistent vector icons used across the UI.
 - **[Vercel Analytics](https://vercel.com/analytics)**: Privacy-friendly real-time traffic insights.
