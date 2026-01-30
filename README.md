@@ -26,6 +26,14 @@
 - **[Lucide Icons](https://lucide.dev/)**: Beautiful, consistent vector icons used across the UI.
 - **[Vercel Analytics](https://vercel.com/analytics)**: Privacy-friendly real-time traffic insights.
 
+## ⚡ Performance & Optimization
+
+- **Server-Side Rendering (SSR)**: Critical market data is rendered on the server to ensure immediate First Contentful Paint (FCP).
+- **Smart API Caching**: Implements `Next.js Data Cache` with a 5-minute revalidation strategy (`revalidate: 300`) to handle API rate limits efficiently.
+- **Optimized Data Fetching**: Granular loading states for Charts vs. Metadata prevents unnecessary re-renders and eliminates layout shifts (Zero CLS).
+- **Code Splitting**: Heavy charting components are automatically code-split by the App Router, minimizing the initial bundle size.
+- **Hardware Acceleration**: All animations utilize GPU-accelerated CSS transforms via Framer Motion for buttery smooth 60fps interactions.
+
 ##  Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
