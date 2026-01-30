@@ -1,6 +1,10 @@
 # CripterDex 
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-cripterdex.vercel.app-blue?style=for-the-badge&logo=vercel)](https://cripterdex.vercel.app/)
+
 **CripterDex** is a professional-grade cryptocurrency dashboard and market intelligence platform designed for traders, investors, and enthusiasts. Built with modern web technologies, it offers real-time data tracking, news aggregation, and portfolio management in a sleek, responsive interface.
+
+![CripterDex Preview](public/Screenshot.jpeg)
 
 ##  Features
 
