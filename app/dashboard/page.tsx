@@ -8,7 +8,7 @@ import { TrendingUp, TrendingDown, DollarSign, Activity, BarChart3, ArrowRight, 
 import { fetchCryptoList, fetchGlobalMarketData, fetchTrendingCoins, fetchMarketChart, formatCurrency, formatLargeNumber, formatPercentage } from '@/lib/crypto-api'
 import { Cryptocurrency, MarketStats, TrendingCoin } from '@/lib/types'
 import { AreaChart, Area, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, BarChart, Bar } from 'recharts'
-import { generateAxisTicks, formatChartDate } from '@/lib/utils'
+import { formatChartDate } from '@/lib/utils'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -88,7 +88,6 @@ export default function DashboardPage() {
 
   const marketCapChange = marketStats?.market_cap_change_percentage_24h_usd || 0
   const isPositive = marketCapChange >= 0
-  const customTicks = generateAxisTicks(dashboardChartData, timeRange === '1' ? '1D' : '7D') // Simplified tick logic for demo
 
   const selectedCoinData = topCryptos.find(c => c.id === selectedCurrency)
 
@@ -257,12 +256,12 @@ export default function DashboardPage() {
                         </defs>
                         <XAxis 
                             dataKey="timestamp" 
-                            tickFormatter={(val) => formatChartDate(val, timeRange === '1' ? '1D' : '7D')}
+                            tickFormatter={(val) => formatChartDate(val, timeRange)}
                             tickLine={false}
                             axisLine={false}
                             tickMargin={8}
-                            ticks={customTicks}
-                            minTickGap={30}
+                            tickCount={timeRange === '1' ? 6 : timeRange === '7' ? 7 : 5}
+                            minTickGap={50}
                             fontSize={12}
                             stroke="var(--muted-foreground)"
                         />
@@ -295,12 +294,12 @@ export default function DashboardPage() {
                         <BarChart data={dashboardChartData}>
                             <XAxis 
                                 dataKey="timestamp" 
-                                tickFormatter={(val) => formatChartDate(val, timeRange === '1' ? '1D' : '7D')}
+                                tickFormatter={(val) => formatChartDate(val, timeRange)}
                                 tickLine={false}
                                 axisLine={false}
                                 tickMargin={8}
-                                ticks={customTicks}
-                                minTickGap={30}
+                                tickCount={timeRange === '1' ? 6 : timeRange === '7' ? 7 : 5}
+                                minTickGap={50}
                                 fontSize={12}
                                 stroke="var(--muted-foreground)"
                             />

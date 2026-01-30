@@ -23,9 +23,9 @@ export function formatDate(date: Date): string {
 export function formatChartDate(timestamp: number, range: string | number): string {
   const date = new Date(timestamp)
   const r = String(range)
-  if (r === '0.04' || r === '1' || r === '1H' || r === '1D') {
+  if (r === '1' || r === '1H' || r === '1D') {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-  } else if (r === '7' || r === '30' || r === '90' || r === '1W' || r === '1M' || r === '3M' || r === '3D') {
+  } else if (r === '7' || r === '30' || r === '90' || r === '1W' || r === '1M' || r === '3M') {
     return date.toLocaleDateString([], { month: 'short', day: 'numeric' })
   } else {
     return date.toLocaleDateString([], { month: 'short', year: '2-digit' })
@@ -45,6 +45,15 @@ export function generateAxisTicks(data: { timestamp: number }[], range: string |
   const min = Math.min(...timestamps)
   const max = Math.max(...timestamps)
 
+  if (r === '1' || r === '1D') {
+    const ticks = []
+    const step = 4 * 60 * 60 * 1000 // Every 4 hours
+    for (let t = min; t <= max; t += step) {
+      ticks.push(t)
+    }
+    return ticks
+  }
+
   if (r === '7' || r === '1W') {
     const ticks = []
     const day = 24 * 60 * 60 * 1000
@@ -58,14 +67,28 @@ export function generateAxisTicks(data: { timestamp: number }[], range: string |
   
   if (r === '30' || r === '1M') {
       const ticks = []
-      const step = 5 * 24 * 60 * 60 * 1000
+      const step = 5 * 24 * 60 * 60 * 1000 // Every 5 days
       for (let t = min; t <= max; t += step) ticks.push(t)
       return ticks
   }
 
-  if (r === '3' || r === '3D') {
+  if (r === '90' || r === '3M') {
       const ticks = []
-      const step = 12 * 60 * 60 * 1000
+      const step = 15 * 24 * 60 * 60 * 1000 // Every 15 days
+      for (let t = min; t <= max; t += step) ticks.push(t)
+      return ticks
+  }
+
+  if (r === '365' || r === '1Y') {
+      const ticks = []
+      const step = 60 * 24 * 60 * 60 * 1000 // Every 2 months
+      for (let t = min; t <= max; t += step) ticks.push(t)
+      return ticks
+  }
+
+  if (r === 'max') {
+      const ticks = []
+      const step = 365 * 24 * 60 * 60 * 1000 // Every year
       for (let t = min; t <= max; t += step) ticks.push(t)
       return ticks
   }
