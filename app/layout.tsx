@@ -10,14 +10,14 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'LinkNest - Your Link-in-Bio Page',
-  description: 'Create a beautiful link-in-bio page for all your content. Share unlimited links from one simple URL. Perfect for creators, influencers, and businesses.',
+  title: 'CripterDex - Real-time Crypto Dashboard',
+  description: 'Real-time cryptocurrency dashboard and market analyzer. Track prices, trends, and news for thousands of coins.',
   generator: 'v0.app',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'LinkNest',
+    title: 'CripterDex',
   },
   formatDetection: {
     telephone: false,
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    title: 'LinkNest - Your Link-in-Bio Page',
-    description: 'Create a beautiful link-in-bio page for all your content. Share unlimited links from one simple URL.',
-    siteName: 'LinkNest',
+    title: 'CripterDex - Real-time Crypto Dashboard',
+    description: 'Real-time cryptocurrency dashboard and market analyzer. Track prices, trends, and news for thousands of coins.',
+    siteName: 'CripterDex',
     images: [{
       url: '/icon.svg',
       width: 1200,
       height: 630,
-      alt: 'LinkNest'
+      alt: 'CripterDex'
     }],
   },
   twitter: {
