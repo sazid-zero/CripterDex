@@ -1,7 +1,7 @@
 {
-  "name": "LinkNest",
-  "short_name": "LinkNest",
-  "description": "Your link-in-bio page. Share all your content from one simple URL.",
+  "name": "cripterdex",
+  "short_name": "cripterdex",
+  "description": "Real-time cryptocurrency dashboard and market analyzer",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

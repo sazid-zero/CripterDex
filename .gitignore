@@ -36,6 +36,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Remotion
+remotion-video
+
 # IDE
 .vscode
 .idea
