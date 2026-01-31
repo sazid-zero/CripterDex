@@ -23,6 +23,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useIsMobile } from '@/components/ui/use-mobile'
 
 export default function DashboardPage() {
   const { toast } = useToast()
@@ -35,6 +36,7 @@ export default function DashboardPage() {
   const [timeRange, setTimeRange] = useState('7')
   const [chartType, setChartType] = useState<'area' | 'bar'>('area')
   const [isChartLoading, setIsChartLoading] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     loadDashboardData()
@@ -100,24 +102,24 @@ export default function DashboardPage() {
         className="space-y-4"
       >
         {/* Top Stats Row */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Market Cap</CardTitle>
+              <CardTitle className="text-xs sm:text-sm font-medium">Total Market Cap</CardTitle>
               <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                 <DollarSign className="h-4 w-4" />
+                 <DollarSign className="h-3 w-3 sm:h-4 sm:w-4" />
               </div>
             </CardHeader>
             <CardContent>
               {loading ? <Skeleton className="h-7 w-20" /> : (
                 <>
-                  <div className="text-2xl font-bold">{marketStats ? formatLargeNumber(marketStats.total_market_cap) : '$0'}</div>
-                  <p className="text-xs text-muted-foreground flex items-center mt-1">
+                  <div className="text-lg sm:text-2xl font-bold">{marketStats ? formatLargeNumber(marketStats.total_market_cap) : '$0'}</div>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground flex items-center mt-1">
                     {isPositive ? <TrendingUp className="mr-1 h-3 w-3 text-green-500" /> : <TrendingDown className="mr-1 h-3 w-3 text-red-500" />}
                     <span className={isPositive ? 'text-green-500' : 'text-red-500'}>
                       {formatPercentage(marketCapChange)}
                     </span>
-                    <span className="ml-1">from yesterday</span>
+                    <span className="ml-1 hidden sm:inline">from yesterday</span>
                   </p>
                 </>
               )}
@@ -125,48 +127,48 @@ export default function DashboardPage() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">24h Volume</CardTitle>
+              <CardTitle className="text-xs sm:text-sm font-medium">24h Volume</CardTitle>
               <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                 <Activity className="h-4 w-4" />
+                 <Activity className="h-3 w-3 sm:h-4 sm:w-4" />
               </div>
             </CardHeader>
             <CardContent>
               {loading ? <Skeleton className="h-7 w-20" /> : (
                 <>
-                  <div className="text-2xl font-bold">{marketStats ? formatLargeNumber(marketStats.total_volume) : '$0'}</div>
-                  <p className="text-xs text-muted-foreground mt-1">Total trading volume</p>
+                  <div className="text-lg sm:text-2xl font-bold">{marketStats ? formatLargeNumber(marketStats.total_volume) : '$0'}</div>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">Total volume</p>
                 </>
               )}
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">BTC Dominance</CardTitle>
+              <CardTitle className="text-xs sm:text-sm font-medium">BTC Dominance</CardTitle>
               <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                 <StartIcon className="h-4 w-4" /> 
+                 <StartIcon className="h-3 w-3 sm:h-4 sm:w-4" /> 
               </div>
             </CardHeader>
             <CardContent>
               {loading ? <Skeleton className="h-7 w-20" /> : (
                 <>
-                  <div className="text-2xl font-bold">{marketStats ? `${marketStats.market_cap_percentage.btc.toFixed(1)}%` : '0%'}</div>
-                  <p className="text-xs text-muted-foreground mt-1">Market share</p>
+                  <div className="text-lg sm:text-2xl font-bold">{marketStats ? `${marketStats.market_cap_percentage.btc.toFixed(1)}%` : '0%'}</div>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">Market share</p>
                 </>
               )}
             </CardContent>
           </Card>
           <Card>
              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">ETH Dominance</CardTitle>
+              <CardTitle className="text-xs sm:text-sm font-medium">ETH Dominance</CardTitle>
               <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                 <PieChart className="h-4 w-4" />
+                 <PieChart className="h-3 w-3 sm:h-4 sm:w-4" />
               </div>
             </CardHeader>
              <CardContent>
               {loading ? <Skeleton className="h-7 w-20" /> : (
                 <>
-                  <div className="text-2xl font-bold">{marketStats ? `${marketStats.market_cap_percentage.eth.toFixed(1)}%` : '0%'}</div>
-                  <p className="text-xs text-muted-foreground mt-1">Market share</p>
+                  <div className="text-lg sm:text-2xl font-bold">{marketStats ? `${marketStats.market_cap_percentage.eth.toFixed(1)}%` : '0%'}</div>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">Market share</p>
                 </>
               )}
             </CardContent>
@@ -174,7 +176,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Main Content Areas */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <div className="grid gap-2 md:gap-4 md:grid-cols-2 lg:grid-cols-7">
           {/* Main Chart */}
           <Card className="col-span-4">
             <CardHeader>
@@ -237,8 +239,8 @@ export default function DashboardPage() {
                   </div>
               </div>
             </CardHeader>
-            <CardContent className="pl-2">
-              <div className="h-[350px] w-full relative">
+            <CardContent className="pl-0 sm:pl-2">
+              <div className="h-[200px] sm:h-[350px] w-full relative">
                  {(isChartLoading) && (
                       <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-[1px] z-10 rounded-lg transition-all duration-300">
                         <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
@@ -262,7 +264,7 @@ export default function DashboardPage() {
                             tickMargin={8}
                             tickCount={timeRange === '1' ? 6 : timeRange === '7' ? 7 : 5}
                             minTickGap={50}
-                            fontSize={12}
+                            fontSize={isMobile ? 10 : 12}
                             stroke="var(--muted-foreground)"
                         />
                         <YAxis 
@@ -271,7 +273,7 @@ export default function DashboardPage() {
                             axisLine={false}
                             tickMargin={8}
                             width={60}
-                            fontSize={12}
+                            fontSize={isMobile ? 10 : 12}
                             domain={['auto', 'auto']}
                             stroke="var(--muted-foreground)"
                         />
@@ -300,7 +302,7 @@ export default function DashboardPage() {
                                 tickMargin={8}
                                 tickCount={timeRange === '1' ? 6 : timeRange === '7' ? 7 : 5}
                                 minTickGap={50}
-                                fontSize={12}
+                                fontSize={isMobile ? 10 : 12}
                                 stroke="var(--muted-foreground)"
                             />
                              <YAxis 
@@ -309,7 +311,7 @@ export default function DashboardPage() {
                                 axisLine={false}
                                 tickMargin={8}
                                 width={60}
-                                fontSize={12}
+                                fontSize={isMobile ? 10 : 12}
                                 domain={['auto', 'auto']}
                                 stroke="var(--muted-foreground)"
                             />
