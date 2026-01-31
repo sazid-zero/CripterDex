@@ -180,9 +180,9 @@ export default function CoinDetailPage() {
                           tickFormatter={(val) => formatChartDate(val, timeRange)}
                           axisLine={false}
                           tickLine={false}
-                          tickMargin={4}
+                          tickMargin={2}
                           minTickGap={20}
-                          fontSize={9}
+                          fontSize={10}
                           stroke="var(--muted-foreground)"
                           className="sm:text-xs"
                         />
@@ -190,13 +190,13 @@ export default function CoinDetailPage() {
                           domain={['auto', 'auto']}
                           axisLine={false}
                           tickLine={false}
-                          tickMargin={2}
+                          tickMargin={8}
                           tickFormatter={(value) => `$${value.toLocaleString()}`}
-                          fontSize={9}
+                          fontSize={10}
                           stroke="var(--muted-foreground)"
                           orientation="right"
                           className="sm:text-xs"
-                          width={35}
+                          width={50}
                         />
                         <Tooltip 
                             contentStyle={{ borderRadius: '8px', border: '1px solid var(--border)', backgroundColor: 'var(--background)' }}
