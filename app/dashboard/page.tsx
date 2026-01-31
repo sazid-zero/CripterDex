@@ -94,15 +94,16 @@ export default function DashboardPage() {
   const selectedCoinData = topCryptos.find(c => c.id === selectedCurrency)
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
+    <div className="flex-1 space-y-2 md:space-y-4 p-1 md:p-8 pt-2 md:pt-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="space-y-4"
+        className="space-y-2 md:space-y-4"
       >
+
         {/* Top Stats Row */}
-        <div className="grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-1 md:gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-xs sm:text-sm font-medium">Total Market Cap</CardTitle>
@@ -179,44 +180,44 @@ export default function DashboardPage() {
         <div className="grid gap-2 md:gap-4 md:grid-cols-2 lg:grid-cols-7">
           {/* Main Chart */}
           <Card className="col-span-4">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <CardTitle className="flex items-center gap-2">
+            <CardHeader className="p-2 sm:p-6">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div className="space-y-0.5">
+                    <CardTitle className="flex items-center gap-2 text-sm sm:text-2xl">
                         {selectedCoinData ? (
                             <>
-                                <Avatar className="h-6 w-6">
+                                <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
                                     <AvatarImage src={selectedCoinData.image} />
                                     <AvatarFallback>{selectedCoinData.symbol[0]}</AvatarFallback>
                                 </Avatar>
-                                {selectedCoinData.name} Price
+                                {selectedCoinData.name} <span className="hidden sm:inline">Price</span>
                             </>
                         ) : 'Stats'}
                     </CardTitle>
-                    <CardDescription>
-                        Market performance overview
+                    <CardDescription className="text-[10px] sm:text-sm">
+                        Market performance
                     </CardDescription>
                   </div>
-                  <div className="flex items-center gap-2">
-                      <Tabs value={chartType} onValueChange={(v) => setChartType(v as any)} className="w-[100px]">
-                        <TabsList className="grid w-full grid-cols-2 h-9">
-                            <TabsTrigger value="area" className="px-2">
-                                <LineChart className="h-4 w-4" />
+                  <div className="grid grid-cols-3 gap-1 w-full md:w-auto md:flex md:gap-2">
+                      <Tabs value={chartType} onValueChange={(v) => setChartType(v as any)} className="w-full md:w-[100px]">
+                        <TabsList className="grid w-full grid-cols-2 h-6 md:h-9 p-0.5">
+                            <TabsTrigger value="area" className="px-1 h-5 md:h-8">
+                                <LineChart className="h-3 w-3 md:h-4 md:w-4" />
                             </TabsTrigger>
-                            <TabsTrigger value="bar" className="px-2">
-                                <CandlestickChart className="h-4 w-4" />
+                            <TabsTrigger value="bar" className="px-1 h-5 md:h-8">
+                                <CandlestickChart className="h-3 w-3 md:h-4 md:w-4" />
                             </TabsTrigger>
                         </TabsList>
                       </Tabs>
                      <Select value={selectedCurrency} onValueChange={setSelectedCurrency}>
-                        <SelectTrigger className="w-[130px] h-9">
-                            <SelectValue placeholder="Select Coin" />
+                        <SelectTrigger className="w-full md:w-[130px] h-6 md:h-9 text-[10px] md:text-sm px-2">
+                            <SelectValue placeholder="Coin" />
                         </SelectTrigger>
                         <SelectContent>
                             {topCryptos.map(c => (
-                                <SelectItem key={c.id} value={c.id}>
+                                <SelectItem key={c.id} value={c.id} className="text-xs">
                                     <div className="flex items-center gap-2">
-                                        <img src={c.image} alt={c.name} className="w-4 h-4 rounded-full" />
+                                        <img src={c.image} alt={c.name} className="w-3 h-3 rounded-full" />
                                         <span>{c.symbol.toUpperCase()}</span>
                                     </div>
                                 </SelectItem>
@@ -225,15 +226,15 @@ export default function DashboardPage() {
                         </SelectContent>
                      </Select>
                       <Select value={timeRange} onValueChange={setTimeRange}>
-                        <SelectTrigger className="w-[100px] h-9">
+                        <SelectTrigger className="w-full md:w-[100px] h-6 md:h-9 text-[10px] md:text-sm px-2">
                             <SelectValue placeholder="Range" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="1">24 Hour</SelectItem>
-                            <SelectItem value="7">7 Days</SelectItem>
-                            <SelectItem value="30">30 Days</SelectItem>
-                            <SelectItem value="90">3 Months</SelectItem>
-                            <SelectItem value="365">1 Year</SelectItem>
+                            <SelectItem value="1" className="text-xs">24h</SelectItem>
+                            <SelectItem value="7" className="text-xs">7d</SelectItem>
+                            <SelectItem value="30" className="text-xs">30d</SelectItem>
+                            <SelectItem value="90" className="text-xs">3m</SelectItem>
+                            <SelectItem value="365" className="text-xs">1y</SelectItem>
                         </SelectContent>
                      </Select>
                   </div>
@@ -261,19 +262,19 @@ export default function DashboardPage() {
                             tickFormatter={(val) => formatChartDate(val, timeRange)}
                             tickLine={false}
                             axisLine={false}
-                            tickMargin={8}
+                            tickMargin={5}
                             tickCount={timeRange === '1' ? 6 : timeRange === '7' ? 7 : 5}
-                            minTickGap={50}
-                            fontSize={isMobile ? 10 : 12}
+                            minTickGap={30}
+                            fontSize={isMobile ? 9 : 12}
                             stroke="var(--muted-foreground)"
                         />
                         <YAxis 
                             tickFormatter={(value) => `$${value.toLocaleString()}`}
                             tickLine={false}
                             axisLine={false}
-                            tickMargin={8}
-                            width={60}
-                            fontSize={isMobile ? 10 : 12}
+                            tickMargin={5}
+                            width={isMobile ? 40 : 60}
+                            fontSize={isMobile ? 9 : 12}
                             domain={['auto', 'auto']}
                             stroke="var(--muted-foreground)"
                         />
@@ -299,19 +300,19 @@ export default function DashboardPage() {
                                 tickFormatter={(val) => formatChartDate(val, timeRange)}
                                 tickLine={false}
                                 axisLine={false}
-                                tickMargin={8}
+                                tickMargin={5}
                                 tickCount={timeRange === '1' ? 6 : timeRange === '7' ? 7 : 5}
-                                minTickGap={50}
-                                fontSize={isMobile ? 10 : 12}
+                                minTickGap={30}
+                                fontSize={isMobile ? 9 : 12}
                                 stroke="var(--muted-foreground)"
                             />
                              <YAxis 
                                 tickFormatter={(value) => `$${value.toLocaleString()}`}
                                 tickLine={false}
                                 axisLine={false}
-                                tickMargin={8}
-                                width={60}
-                                fontSize={isMobile ? 10 : 12}
+                                tickMargin={5}
+                                width={isMobile ? 40 : 60}
+                                fontSize={isMobile ? 9 : 12}
                                 domain={['auto', 'auto']}
                                 stroke="var(--muted-foreground)"
                             />
