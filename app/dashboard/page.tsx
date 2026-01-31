@@ -94,7 +94,7 @@ export default function DashboardPage() {
   const selectedCoinData = topCryptos.find(c => c.id === selectedCurrency)
 
   return (
-    <div className="flex-1 space-y-2 md:space-y-4 p-1 md:p-8 pt-2 md:pt-6">
+    <div className="flex-1 space-y-2 md:space-y-4 p-0 md:p-8 pt-2 md:pt-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -179,7 +179,7 @@ export default function DashboardPage() {
         {/* Main Content Areas */}
         <div className="grid gap-2 md:gap-4 md:grid-cols-2 lg:grid-cols-7">
           {/* Main Chart */}
-          <Card className="col-span-4">
+          <Card className="col-span-full lg:col-span-4">
             <CardHeader className="p-2 sm:p-6">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                   <div className="space-y-0.5">
@@ -240,7 +240,7 @@ export default function DashboardPage() {
                   </div>
               </div>
             </CardHeader>
-            <CardContent className="pl-0 sm:pl-2">
+            <CardContent className="pl-1 sm:pl-2">
               <div className="h-[200px] sm:h-[350px] w-full relative">
                  {(isChartLoading) && (
                       <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-[1px] z-10 rounded-lg transition-all duration-300">
@@ -333,7 +333,7 @@ export default function DashboardPage() {
           </Card>
 
           {/* Trending Coins */}
-          <Card className="col-span-3">
+          <Card className="col-span-full lg:col-span-3">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Flame className="h-4 w-4 text-orange-500" />
@@ -386,54 +386,54 @@ export default function DashboardPage() {
               </Button>
             </Link>
           </CardHeader>
-          <CardContent>
+            <CardContent className="p-0 sm:p-6">
              <Table>
               <TableHeader>
-                <TableRow className="h-12 bg-muted/30 hover:bg-transparent">
-                  <TableHead className="w-[60px] text-sm font-bold pl-6">#</TableHead>
-                  <TableHead className="text-sm font-bold">Asset</TableHead>
-                  <TableHead className="text-right text-sm font-bold">Price</TableHead>
-                  <TableHead className="text-right text-sm font-bold">Change (24h)</TableHead>
-                  <TableHead className="text-right text-sm font-bold hidden md:table-cell pr-6">Market Cap</TableHead>
+                <TableRow className="h-8 bg-muted/30 hover:bg-transparent">
+                  <TableHead className="w-[40px] text-xs font-bold pl-2">#</TableHead>
+                  <TableHead className="text-xs font-bold">Asset</TableHead>
+                  <TableHead className="text-right text-xs font-bold">Price</TableHead>
+                  <TableHead className="text-right text-xs font-bold">Change</TableHead>
+                  <TableHead className="text-right text-xs font-bold hidden md:table-cell pr-6">Market Cap</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {loading ? (
                     Array(5).fill(0).map((_, i) => (
-                      <TableRow key={i} className="h-16">
-                        <TableCell className="pl-6"><Skeleton className="h-4 w-4" /></TableCell>
-                        <TableCell><Skeleton className="h-8 w-32" /></TableCell>
-                        <TableCell><Skeleton className="h-4 w-20 ml-auto" /></TableCell>
+                      <TableRow key={i} className="h-10">
+                        <TableCell className="pl-2"><Skeleton className="h-4 w-4" /></TableCell>
+                        <TableCell><Skeleton className="h-6 w-24" /></TableCell>
                         <TableCell><Skeleton className="h-4 w-16 ml-auto" /></TableCell>
-                        <TableCell className="pr-6"><Skeleton className="h-4 w-24 ml-auto" /></TableCell>
+                        <TableCell><Skeleton className="h-4 w-12 ml-auto" /></TableCell>
+                        <TableCell className="pr-6"><Skeleton className="h-4 w-20 ml-auto" /></TableCell>
                       </TableRow>
                     ))
                 ) : (
                   topCryptos.map((crypto) => {
                      const isUp = crypto.price_change_percentage_24h >= 0
                      return (
-                      <TableRow key={crypto.id} className="cursor-pointer hover:bg-muted/50 transition-colors h-16 text-base" onClick={() => window.location.href = `/coin/${crypto.id}`}>
-                        <TableCell className="font-medium text-muted-foreground pl-6 text-sm">{crypto.market_cap_rank}</TableCell>
+                      <TableRow key={crypto.id} className="cursor-pointer hover:bg-muted/50 transition-colors h-10 text-xs sm:text-sm" onClick={() => window.location.href = `/coin/${crypto.id}`}>
+                        <TableCell className="font-medium text-muted-foreground pl-2 text-xs">{crypto.market_cap_rank}</TableCell>
                         <TableCell>
-                          <div className="flex items-center gap-4 py-1">
-                             <Avatar className="h-9 w-9 border border-border/50 shadow-sm">
+                          <div className="flex items-center gap-2 py-1">
+                             <Avatar className="h-6 w-6 border border-border/50 shadow-sm">
                                 <AvatarImage src={crypto.image} />
                                 <AvatarFallback>{crypto.symbol[0]}</AvatarFallback>
                              </Avatar>
                              <div className="flex flex-col gap-0.5">
-                                 <span className="text-base font-semibold leading-none">{crypto.name}</span>
-                                 <span className="text-sm text-muted-foreground uppercase tracking-wide">{crypto.symbol}</span>
+                                 <span className="text-xs sm:text-base font-semibold leading-none">{crypto.name}</span>
+                                 <span className="text-[10px] sm:text-sm text-muted-foreground uppercase tracking-wide">{crypto.symbol}</span>
                              </div>
                           </div>
                         </TableCell>
                         <TableCell className="text-right font-medium">{formatCurrency(crypto.current_price)}</TableCell>
                         <TableCell className="text-right">
-                           <div className={`inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium gap-1.5 ${isUp ? 'text-green-600 bg-green-500/10' : 'text-red-600 bg-red-500/10'}`}>
-                             {isUp ? <TrendingUp className="h-3.5 w-3.5" /> : <TrendingDown className="h-3.5 w-3.5" />}
+                           <div className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] sm:text-sm font-medium gap-1 ${isUp ? 'text-green-600 bg-green-500/10' : 'text-red-600 bg-red-500/10'}`}>
+                             {isUp ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
                              {formatPercentage(crypto.price_change_percentage_24h)}
                            </div>
                         </TableCell>
-                        <TableCell className="text-right hidden md:table-cell text-muted-foreground pr-6 text-sm">
+                        <TableCell className="text-right hidden md:table-cell text-muted-foreground pr-6 text-xs sm:text-sm">
                           {formatLargeNumber(crypto.market_cap)}
                         </TableCell>
                       </TableRow>
@@ -442,7 +442,7 @@ export default function DashboardPage() {
                 )}
               </TableBody>
             </Table>
-          </CardContent>
+           </CardContent>
         </Card>
       </motion.div>
     </div>

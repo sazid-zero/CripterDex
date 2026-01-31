@@ -38,14 +38,14 @@ function formatTimeAgo(dateString: string) {
 const NewsCard = ({ item, variant = 'standard' }: { item: NewsItem; variant?: 'featured' | 'horizontal' | 'standard' }) => {
   if (variant === 'featured') {
     return (
-      <Card className="relative overflow-hidden group border-0 shadow-lg h-[400px]">
+      <Card className="relative overflow-hidden group border-0 shadow-lg h-[250px] md:h-[400px]">
         <img 
             src={item.image_url} 
             alt={item.title}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-        <div className="absolute bottom-0 left-0 p-6 text-white w-full">
+        <div className="absolute bottom-0 left-0 p-3 md:p-6 text-white w-full">
             <div className="flex gap-2 mb-3">
                  <Badge className="bg-primary hover:bg-primary/90 text-primary-foreground border-0">
                     {item.source}
@@ -72,7 +72,7 @@ const NewsCard = ({ item, variant = 'standard' }: { item: NewsItem; variant?: 'f
 
   if (variant === 'horizontal') {
       return (
-        <Card className="overflow-hidden h-[190px] hover:shadow-md transition-all hover:border-primary/50 group bg-card/50 backdrop-blur-sm flex">
+        <Card className="overflow-hidden h-[120px] md:h-[190px] hover:shadow-md transition-all hover:border-primary/50 group bg-card/50 backdrop-blur-sm flex">
             <div className="relative w-2/5 shrink-0 overflow-hidden bg-muted">
                 <img 
                     src={item.image_url} 
@@ -102,7 +102,7 @@ const NewsCard = ({ item, variant = 'standard' }: { item: NewsItem; variant?: 'f
   // Standard vertical card for the bottom grid
   return (
     <Card className="overflow-hidden flex flex-col h-full hover:shadow-md transition-all hover:border-primary/50 group bg-card/50 backdrop-blur-sm">
-      <div className="relative h-48 w-full overflow-hidden bg-muted">
+      <div className="relative h-32 md:h-48 w-full overflow-hidden bg-muted">
           <img 
               src={item.image_url} 
               alt={item.title}
@@ -161,7 +161,7 @@ export default function NewsPage() {
   const feed = news.slice(6)
 
   return (
-    <div className="flex-1 flex flex-col space-y-8 p-6 md:p-10 pt-8 max-w-[1600px] mx-auto w-full">
+    <div className="flex-1 flex flex-col space-y-4 md:space-y-8 p-1 md:p-10 pt-4 md:pt-8 max-w-[1600px] mx-auto w-full">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -195,9 +195,9 @@ export default function NewsPage() {
                     </div>
 
                     {/* Right Column: 4 Small Cards (2x2 Grid) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 content-start">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 content-start">
                         {sideList.map((item, i) => (
-                            <div key={item.id} className="h-[400px]">
+                            <div key={item.id} className="h-[120px] md:h-[400px]">
                                 <NewsCard item={item} variant="standard" />
                             </div>
                         ))}

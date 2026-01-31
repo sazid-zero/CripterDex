@@ -64,7 +64,7 @@ export default function MarketsPage() {
   }
 
   return (
-    <div className="flex-1 flex flex-col space-y-6 p-6 md:p-10 pt-8">
+    <div className="flex-1 flex flex-col space-y-4 p-1 md:p-10 pt-4 md:pt-8">
 
       {/* Search & Filters */}
       <div className="flex items-center gap-4 py-2">
@@ -86,8 +86,7 @@ export default function MarketsPage() {
             <Table>
               <TableHeader>
                 <TableRow className="hover:bg-transparent h-12 bg-muted/30">
-                  <TableHead className="w-[60px] text-sm font-bold pl-6">#</TableHead>
-                  <TableHead className="text-sm font-bold">Coin</TableHead>
+                  <TableHead className="text-sm font-bold pl-4">Coin</TableHead>
                   <TableHead className="text-right text-sm font-bold">Price</TableHead>
                   <TableHead className="text-right text-sm font-bold">24h Change</TableHead>
                   <TableHead className="text-right text-sm font-bold hidden md:table-cell">Market Cap</TableHead>
@@ -98,9 +97,8 @@ export default function MarketsPage() {
               <TableBody>
                 {loading ? (
                   Array.from({ length: 5 }).map((_, i) => (
-                    <TableRow key={i} className="h-16">
-                      <TableCell className="pl-6"><Skeleton className="h-4 w-4" /></TableCell>
-                      <TableCell>
+                    <TableRow key={i} className="h-10">
+                      <TableCell className="pl-4">
                         <div className="flex items-center gap-3">
                           <Skeleton className="h-8 w-8 rounded-full" />
                           <div className="space-y-1">
@@ -117,7 +115,7 @@ export default function MarketsPage() {
                   ))
                 ) : filteredCryptos.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="h-32 text-center text-muted-foreground text-lg">
+                    <TableCell colSpan={6} className="h-32 text-center text-muted-foreground text-lg">
                       No results found.
                     </TableCell>
                   </TableRow>
@@ -126,30 +124,27 @@ export default function MarketsPage() {
                     const isUp = crypto.price_change_percentage_24h >= 0
                     const inWatchlist = isInWatchlist(crypto.id)
                     return (
-                      <TableRow key={crypto.id} className="cursor-pointer hover:bg-muted/50 transition-colors h-16 text-base">
-                        <TableCell className="text-sm font-medium text-muted-foreground w-[60px] pl-6">
-                          {crypto.market_cap_rank}
-                        </TableCell>
-                        <TableCell>
-                           <Link href={`/coin/${crypto.id}`} className="flex items-center gap-4 py-1">
-                             <img src={crypto.image} alt={crypto.name} className="h-9 w-9 rounded-full shadow-sm" />
-                             <div className="flex flex-col gap-0.5">
-                               <span className="text-base font-semibold leading-none">{crypto.name}</span>
-                               <span className="text-sm text-muted-foreground uppercase tracking-wide">{crypto.symbol}</span>
+                      <TableRow key={crypto.id} className="cursor-pointer hover:bg-muted/50 transition-colors h-10 text-xs sm:text-base">
+                        <TableCell className="pl-4">
+                           <Link href={`/coin/${crypto.id}`} className="flex items-center gap-1.5 py-1">
+                             <img src={crypto.image} alt={crypto.name} className="h-6 w-6 sm:h-9 sm:w-9 rounded-full shadow-sm" />
+                             <div className="flex flex-col gap-0">
+                               <span className="text-xs sm:text-base font-semibold leading-none">{crypto.name}</span>
+                               <span className="text-[10px] sm:text-sm text-muted-foreground uppercase tracking-wide">{crypto.symbol}</span>
                              </div>
                            </Link>
                         </TableCell>
-                        <TableCell className="text-right font-medium">
+                        <TableCell className="text-right font-medium text-xs sm:text-base">
                           <Link href={`/coin/${crypto.id}`} className="block py-1">
                           {formatCurrency(crypto.current_price)}
                           </Link>
                         </TableCell>
                         <TableCell className="text-right">
                           <Link href={`/coin/${crypto.id}`} className="block py-1">
-                          <div className={`text-sm font-medium px-2.5 py-1 rounded-full inline-flex items-center gap-1.5 ${
+                          <div className={`text-[10px] sm:text-sm font-medium px-1.5 py-0.5 rounded-full inline-flex items-center gap-1 ${
                             isUp ? 'text-green-600 bg-green-500/10' : 'text-red-600 bg-red-500/10'
                           }`}>
-                            {isUp ? <TrendingUp className="h-3.5 w-3.5" /> : <TrendingDown className="h-3.5 w-3.5" />}
+                            {isUp ? <TrendingUp className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> : <TrendingDown className="h-3 w-3 sm:h-3.5 sm:w-3.5" />}
                             {formatPercentage(crypto.price_change_percentage_24h)}
                           </div>
                           </Link>
@@ -164,17 +159,17 @@ export default function MarketsPage() {
                           {formatLargeNumber(crypto.total_volume)}
                           </Link>
                         </TableCell>
-                        <TableCell className="text-right pr-6">
+                        <TableCell className="text-right pr-2 sm:pr-6">
                           <Button 
                             variant="ghost" 
                             size="icon" 
-                            className="hover:text-amber-400 hover:bg-amber-400/10 h-9 w-9"
+                            className="hover:text-amber-400 hover:bg-amber-400/10 h-8 w-8"
                             onClick={(e) => {
                               e.stopPropagation()
                               toggleWatchlist(crypto)
                             }}
                           >
-                            <Star className={`h-5 w-5 ${inWatchlist ? 'fill-amber-400 text-amber-400' : 'text-muted-foreground'}`} />
+                            <Star className={`h-4 w-4 sm:h-5 sm:w-5 ${inWatchlist ? 'fill-amber-400 text-amber-400' : 'text-muted-foreground'}`} />
                           </Button>
                         </TableCell>
                       </TableRow>

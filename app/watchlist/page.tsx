@@ -58,7 +58,7 @@ export default function WatchlistPage() {
   }
 
   return (
-    <div className="flex flex-col space-y-4 p-6 md:p-10">
+    <div className="flex flex-col space-y-4 p-1 md:p-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -108,8 +108,8 @@ export default function WatchlistPage() {
                   <TableBody>
                     {loading && Object.keys(updatedPrices).length === 0 ? (
                          Array(watchlist.length || 3).fill(0).map((_, i) => (
-                          <TableRow key={i} className="h-16">
-                             <TableCell className="pl-6"><Skeleton className="h-4 w-4" /></TableCell>
+                          <TableRow key={i} className="h-10">
+                             <TableCell className="pl-2"><Skeleton className="h-4 w-4" /></TableCell>
                              <TableCell><Skeleton className="h-8 w-32" /></TableCell>
                              <TableCell className="text-right"><Skeleton className="h-4 w-20 ml-auto" /></TableCell>
                              <TableCell className="text-right"><Skeleton className="h-4 w-16 ml-auto" /></TableCell>
@@ -124,30 +124,30 @@ export default function WatchlistPage() {
                       if (!crypto) return null
                       const isUp = crypto.price_change_percentage_24h >= 0
                       return (
-                        <TableRow key={crypto.id} className="cursor-pointer hover:bg-muted/50 transition-colors h-16 text-base" onClick={() => window.location.href = `/coin/${crypto.id}`}>
-                          <TableCell className="font-medium text-muted-foreground pl-6 text-sm">
+                        <TableRow key={crypto.id} className="cursor-pointer hover:bg-muted/50 transition-colors h-10 text-xs sm:text-base" onClick={() => window.location.href = `/coin/${crypto.id}`}>
+                          <TableCell className="font-medium text-muted-foreground pl-2 text-xs sm:text-sm">
                             {crypto.market_cap_rank}
                           </TableCell>
                            <TableCell>
-                            <div className="flex items-center gap-4 py-1">
-                               <Avatar className="h-9 w-9 border border-border/50 shadow-sm">
+                            <div className="flex items-center gap-2 py-1">
+                               <Avatar className="h-6 w-6 sm:h-9 sm:w-9 border border-border/50 shadow-sm">
                                   <AvatarImage src={crypto.image} />
                                   <AvatarFallback>{crypto.symbol[0]}</AvatarFallback>
                                </Avatar>
-                               <div className="flex flex-col gap-0.5">
-                                 <span className="text-base font-semibold leading-none">{crypto.name}</span>
-                                 <span className="text-sm text-muted-foreground uppercase tracking-wide">{crypto.symbol}</span>
+                               <div className="flex flex-col gap-0">
+                                 <span className="text-xs sm:text-base font-semibold leading-none">{crypto.name}</span>
+                                 <span className="text-[10px] sm:text-sm text-muted-foreground uppercase tracking-wide">{crypto.symbol}</span>
                                </div>
                             </div>
                           </TableCell>
-                          <TableCell className="text-right font-medium">
+                          <TableCell className="text-right font-medium text-xs sm:text-base">
                             {formatCurrency(crypto.current_price)}
                           </TableCell>
                           <TableCell className="text-right">
-                            <div className={`inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium gap-1.5 ${
+                            <div className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] sm:text-sm font-medium gap-1 ${
                               isUp ? 'text-green-600 bg-green-500/10' : 'text-red-600 bg-red-500/10'
                             }`}>
-                              {isUp ? <TrendingUp className="h-3.5 w-3.5" /> : <TrendingDown className="h-3.5 w-3.5" />}
+                              {isUp ? <TrendingUp className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> : <TrendingDown className="h-3 w-3 sm:h-3.5 sm:w-3.5" />}
                               {formatPercentage(crypto.price_change_percentage_24h)}
                             </div>
                           </TableCell>
@@ -157,7 +157,7 @@ export default function WatchlistPage() {
                           <TableCell className="text-right hidden lg:table-cell text-muted-foreground text-sm">
                             {formatLargeNumber(crypto.total_volume)}
                           </TableCell>
-                          <TableCell className="text-right pr-6">
+                          <TableCell className="text-right pr-2 sm:pr-6">
                             <Button
                               variant="ghost"
                               size="icon"
