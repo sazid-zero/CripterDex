@@ -199,7 +199,7 @@ export default function LinksPage() {
               <Link2 className="size-6 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              LinkNest
+              CripterDex
             </span>
           </Link>
           <div className="hidden md:block">

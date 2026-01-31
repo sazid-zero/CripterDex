@@ -272,7 +272,7 @@ export default function DashboardPage() {
                             tickFormatter={(value) => `$${value.toLocaleString()}`}
                             tickLine={false}
                             axisLine={false}
-                            tickMargin={5}
+                            tickMargin={2}
                             width={isMobile ? 40 : 60}
                             fontSize={isMobile ? 9 : 12}
                             domain={['auto', 'auto']}

@@ -159,7 +159,7 @@ export default function CoinDetailPage() {
                       ))}
                  </div>
               </CardHeader>
-              <CardContent className="pl-2 pr-1 sm:px-6 pb-3 sm:pb-6">
+              <CardContent className="pl-2 pr-1 sm:px-6 pb-0 sm:pb-3">
                  <div className="h-[200px] sm:h-[350px] w-full mt-2 sm:mt-4 relative">
                     {chartLoading && (
                       <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-[1px] z-10 rounded-lg transition-all duration-300">
@@ -180,7 +180,7 @@ export default function CoinDetailPage() {
                           tickFormatter={(val) => formatChartDate(val, timeRange)}
                           axisLine={false}
                           tickLine={false}
-                          tickMargin={2}
+                          tickMargin={20}
                           minTickGap={20}
                           fontSize={10}
                           stroke="var(--muted-foreground)"

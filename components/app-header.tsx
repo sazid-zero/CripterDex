@@ -58,7 +58,7 @@ export function AppHeader() {
         </Breadcrumb>
       </div>
 
-      <div className="flex items-center gap-4 text-sm text-muted-foreground mr-4">
+      <div className="flex items-center gap-4 text-xs lg:text-sm text-muted-foreground mr-4">
         {date && (
             <>
                 <div className="flex items-center gap-2 hidden md:flex">
