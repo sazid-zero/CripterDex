@@ -13,6 +13,7 @@ import {
 import { usePathname } from "next/navigation"
 import { Calendar, Clock } from "lucide-react"
 import { useEffect, useState } from "react"
+import { ModeToggle } from "@/components/mode-toggle"
 
 export function AppHeader() {
   const pathname = usePathname()
@@ -71,6 +72,7 @@ export function AppHeader() {
                 </div>
             </>
         )}
+        <ModeToggle />
       </div>
     </header>
   )

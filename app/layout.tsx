@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { PWAInstaller } from '@/components/pwa-installer'
 import { LayoutShell } from '@/components/layout-shell'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -64,11 +65,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={_geist.className}>
-        <LayoutShell>
-          {children}
-        </LayoutShell>
-        <PWAInstaller />
-        <Analytics />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <LayoutShell>
+            {children}
+          </LayoutShell>
+          <PWAInstaller />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

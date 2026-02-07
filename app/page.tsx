@@ -151,7 +151,7 @@ export default function Home() {
               <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-primary/40 to-primary/20 blur-2xl group-hover:blur-3xl transition-all duration-300" />
               <div className="relative rounded-2xl border-2 border-border bg-card shadow-2xl overflow-hidden ring-4 ring-primary/20">
                 {/* Window Frame */}
-                <div className="flex items-center gap-2 px-4 py-3 bg-muted/50 border-b border-border">
+                <div className="flex items-center gap-2 px-4 py-3 bg-white/5 backdrop-blur-md border-b border-white/5">
                   <div className="flex gap-1.5">
                     <div className="size-3 rounded-full bg-red-500/70" />
                     <div className="size-3 rounded-full bg-yellow-500/70" />
@@ -769,21 +769,21 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 mt-20 bg-primary">
+      <footer className="border-t border-border/50 mt-20 bg-muted/50">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Newsletter Section */}
           <div className="mb-12 max-w-md mx-auto text-center">
-            <h3 className="text-xl font-bold text-primary-foreground mb-2">Stay Updated</h3>
-            <p className="text-sm text-primary-foreground/80 mb-4">
+            <h3 className="text-xl font-bold text-foreground mb-2">Stay Updated</h3>
+            <p className="text-sm text-muted-foreground mb-4">
               Get crypto market alerts and price notifications.
             </p>
             <div className="flex gap-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary-foreground/50"
+                className="flex-1 px-4 py-2 rounded-lg bg-background border border-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
-              <Button className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <Send className="size-4" />
               </Button>
             </div>
@@ -792,36 +792,36 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
               <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-primary-foreground/10">
-                  <TrendingUp className="size-5 text-primary-foreground" />
+                <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
+                  <TrendingUp className="size-5 text-primary" />
                 </div>
-                <span className="text-lg font-bold text-primary-foreground">CripterDex</span>
+                <span className="text-lg font-bold text-foreground">CripterDex</span>
               </Link>
-              <p className="text-sm text-primary-foreground/70">
+              <p className="text-sm text-muted-foreground">
                 Your crypto market companion.
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-primary-foreground mb-4">Product</h3>
+              <h3 className="font-semibold text-foreground mb-4">Product</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/dashboard" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Dashboard
                   </Link>
                 </li>
                 <li>
-                  <Link href="/markets" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  <Link href="/markets" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Markets
                   </Link>
                 </li>
                 <li>
-                  <Link href="/watchlist" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  <Link href="/watchlist" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Watchlist
                   </Link>
                 </li>
                 <li>
-                  <Link href="/news" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  <Link href="/news" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     News
                   </Link>
                 </li>
@@ -829,15 +829,15 @@ export default function Home() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-primary-foreground mb-4">Resources</h3>
+              <h3 className="font-semibold text-foreground mb-4">Resources</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Documentation
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Blog
                   </a>
                 </li>
@@ -845,15 +845,15 @@ export default function Home() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-primary-foreground mb-4">Legal</h3>
+              <h3 className="font-semibold text-foreground mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Terms of Service
                   </a>
                 </li>
@@ -861,19 +861,19 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-primary-foreground/20 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p className="text-sm text-primary-foreground/70">
+              <p className="text-sm text-muted-foreground">
                 © 2026 CripterDex. All rights reserved.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                   <span className="sr-only">Twitter</span>
                   <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8.29 20c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-7.097 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                   </svg>
                 </a>
-                <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                   <span className="sr-only">GitHub</span>
                   <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.914.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C19.138 20.195 22 16.44 22 12.017 22 6.484 17.522 2 12 2z" clipRule="evenodd" />
